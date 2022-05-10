@@ -12,13 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: wget        
-        uses: wei/wget@v1
+        
         env:
           ART: $(curl https://ksdemo.jfrog.io/artifactory/api/storage/maven-demo/com/wss/wss/0.0.1-SNAPSHOT | jq -r ".children[].uri" | tr -d '/' | tail -1)
-        with:
-          args: -O spring.jar https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/$ART 
-      - name: Deploy
-        run: |
-          java -jar spring.jar &
-          echo "http://localhost:8080/employee"
-          echo $(wget --spider -S "http://localhost:8080/employee" 2>&1 | grep -F HTTP)
+        run:
+          echo $ART
