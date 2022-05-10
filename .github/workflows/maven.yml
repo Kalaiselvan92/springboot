@@ -13,10 +13,8 @@ jobs:
     steps:
       - name: wget        
         uses: wei/wget@v1
-        env: 
-          ART: $(curl https://ksdemo.jfrog.io/artifactory/api/storage/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/ | jq -r ".children[].uri" | tr -d '/' | tail -1)
         with:
-          args: -O spring.jar https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/$ART 
+          args: -O spring.jar https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/SpringBootHelloWorld-0.0.1-20220510.100751-17.jar 
       - name: Deploy
         run: |
           cd /home/runner
