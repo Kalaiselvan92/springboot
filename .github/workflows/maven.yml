@@ -6,16 +6,19 @@ name: Java CI with Maven
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
 jobs:
-  build:
 
+  Deployment:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Build with Maven
-      run:  mvn clean install -DskipTests
+      - name: wget        
+        uses: wei/wget@v1
+        env: 
+          ART: $(curl https://ksdemo.jfrog.io/artifactory/api/storage/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/ | jq -r ".children[].uri" | tr -d '/' | tail -1)
+        with:
+          args: -O  https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/$ART 
+      - name: Deploy
+        run: |
+          cd /home/runner
+          java -jar spring.jar
+          echo "$http://localhost:8080/employee"
