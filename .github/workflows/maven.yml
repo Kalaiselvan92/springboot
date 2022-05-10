@@ -16,7 +16,7 @@ jobs:
         env: 
           ART: $(curl https://ksdemo.jfrog.io/artifactory/api/storage/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/ | jq -r ".children[].uri" | tr -d '/' | tail -1)
         with:
-          args: -O  https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/$ART 
+          args: -O spring.jar https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/$ART 
       - name: Deploy
         run: |
           cd /home/runner
