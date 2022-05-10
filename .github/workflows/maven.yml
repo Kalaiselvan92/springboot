@@ -17,6 +17,5 @@ jobs:
           args: -O spring.jar https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/SpringBootHelloWorld-0.0.1-20220510.100751-17.jar 
       - name: Deploy
         run: |
-          cd /home/runner
           java -jar spring.jar
           echo "$http://localhost:8080/employee"
