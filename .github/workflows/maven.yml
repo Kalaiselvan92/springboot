@@ -14,6 +14,6 @@ jobs:
       - name: wget        
         
         env:
-          ART: $(curl https://ksdemo.jfrog.io/artifactory/api/storage/maven-demo/com/wss/wss/0.0.1-SNAPSHOT | jq -r ".children[].uri" | tr -d '/' | tail -1)
+          ART: ${{ curl https://ksdemo.jfrog.io/artifactory/api/storage/maven-demo/com/wss/wss/0.0.1-SNAPSHOT | jq -r ".children[].uri" | tr -d '/' | tail -1 }}
         run:
           echo $ART
