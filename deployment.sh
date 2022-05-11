@@ -12,4 +12,4 @@ cd /home/ec2-user; rm -rf *.jar; wget --user admin --password Password@123  http
 nohup java -jar /home/ec2-user/$ART
 
 
-#wget -O - --no-check-certificate  http://localhost:8080/employee > /dev/null 2>  /home/ec2-user/response.txt; cat /home/ec2-user/response.txt | grep -F HTTP
+##wget -O - --no-check-certificate  http://localhost:8080/employee > /dev/null 2>  /home/ec2-user/response.txt; cat /home/ec2-user/response.txt | grep -F HTTP
