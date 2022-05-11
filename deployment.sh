@@ -10,4 +10,4 @@ nohup java -jar /home/runner/$ART > log.log 2>&1 &
 
 wget -O /dev/null http://localhost:8080/employee 2> /home/runner/response.txt
 ls -lrt
-cat /home/runner/reponse.txt | grep -F HTTP
+cat /home/runner/response.txt | grep -F HTTP
