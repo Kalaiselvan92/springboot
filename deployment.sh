@@ -8,6 +8,7 @@ cd /home/ec2-user; rm -rf *.jar; wget --user admin --password Password@123  http
 
 nohup java -jar /home/ec2-user/$ART > log.log 2>&1 & 
 
-wget -O /dev/null http://localhost:8080/employee 2> /home/ec2-user/response.txt
-ls -lrt
-cat /home/ec2-user/response.txt | grep "200 OK"
+wget -O - --no-check-certificate  http://localhost:8080/employee > /dev/null 2>  /home/ec2-user/response.txt
+
+
+cat /home/ec2-user/response.txt | grep -F HTTP
