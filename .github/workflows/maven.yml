@@ -11,12 +11,17 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Run script
+      - name: Maven build and deploy
         run: |
-          chmod +x ./deployment.sh
-          ./deployment.sh
+          mvn test
       
+      - uses: mathiasvr/command-output@v1
+      - name: Run tests
+        id: tests
+        with:
+          run: |
+            mix compile --warnings-as-errors
+            mix format --check-formatted 
+            mix ecto.create
+            mix ecto.migrate
+            mix test
