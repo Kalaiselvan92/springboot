@@ -6,7 +6,7 @@ ART=$(curl https://ksdemo.jfrog.io/artifactory/api/storage/maven-demo/com/javain
 cd /home/ec2-user; rm -rf *.jar; wget --user admin --password Password@123  https://ksdemo.jfrog.io/artifactory/maven-demo/com/javainuse/SpringBootHelloWorld/0.0.1-SNAPSHOT/$ART;
 
 
-nohup java -jar /home/ec2-user/$ART > log.log 2>&1 &
+java -jar /home/ec2-user/$ART
 
 
 
