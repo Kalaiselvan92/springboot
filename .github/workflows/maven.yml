@@ -14,16 +14,6 @@ jobs:
       - name: Maven build and deploy
         run: |
           mvn test
+          ipconfig
       
-      - name: Run tests
-        run: |
-          echo "::set-output name=mix-compile--warnings-as-errors::$(mix compile --warnings-as-errors)\n"
-          echo "::set-output name=mix-format--check-formatted::$(mix format --check-formatted)\n"
-          echo "::set-output name=mix-ecto_create::$(mix ecto.create)\n"
-          echo "::set-output name=mix-ecto_migrate::$(mix ecto.migrate)\n"
-          echo "::set-output name=mix-test::$(mix test)\n"
-        id: run_tests
-        env:
-          MIX_ENV: test
-          PGHOST: localhost
-          PGUSER: postgres
+     
