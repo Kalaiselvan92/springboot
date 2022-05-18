@@ -19,9 +19,9 @@ jobs:
           echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
       - name: Env variables
         env: 
-          URL: "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          RUN: "$GITHUB_RUN_NUMBER"
-          CI: "$CI"
+          URL: "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          RUN: "${GITHUB_RUN_NUMBER}"
+          CI: "${CI}"
         run: |          
           echo "${URL}" 
           echo "buildDisplayName": "github.${RUN}" 
