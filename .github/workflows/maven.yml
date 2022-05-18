@@ -19,7 +19,7 @@ jobs:
           echo "buildStartDate": $NOW
           echo "buildStatus": true
           echo "projectId": 59
-          echo $NOW
+          echo $date
 
           
       
