@@ -21,12 +21,13 @@ jobs:
         run: |
           echo "url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_ENV
         
-          #URL: "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          #RUN: "${GITHUB_RUN_NUMBER}"
-          #CI: "${CI}"
+          echo "run=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          echo "ci=$CI" >> $GITHUB_ENV
       - name: print
         run: |          
           echo "${{ env.URL }}"
+          echo "${{ env.RUN }}"
+          echo "${{ env.CI }}"
       
           
       
