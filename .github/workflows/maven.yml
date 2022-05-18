@@ -27,13 +27,16 @@ jobs:
         id: env
         run: |
           
-          echo "::set-output name=env::$(GITHUB_SERVER_URL)"
+          echo "::set-output name=env::$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          echo "::set-output name=num::$GITHUB_RUN_NUMBER"
+          echo "::set-output name=ci::$CI"
           
       - name: print
         run: |
           ${{ steps.date.outputs.date }}
           ${{ steps.env.outputs.env }}
-      
+          ${{ steps.env.outputs.num }}
+          ${{ steps.env.outputs.ci }}
           
       
    
