@@ -14,7 +14,7 @@ jobs:
       - name: Set start timestamp
         id: start
         run: |
-          printf '::set-output name=timestamp::$(date +'%M:%S')T\n'
+          printf '::set-output name=timestamp::%(%S')T\n'
       - name: current date
         id: date
         run: |
@@ -33,7 +33,7 @@ jobs:
           #curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/timing
       - name: Calculate duration
         run: |
-          printf -v now '%(%M:%S)T'
+          printf -v now '%(%S)T'
           duration=$((now - ${{ steps.start.outputs.timestamp }}))
           # Do something with duration, set as output to then use in Slack message
           # or similar
