@@ -25,9 +25,9 @@ jobs:
           #echo "ci=$CI" >> $GITHUB_ENV
       - name: print
         run: |          
-          echo "${{ GITHUB_SERVER_URL }}"
-          echo "${{ GITHUB_RUN_NUMBER }}"
-          echo "${{ CI }}"
+          echo $GITHUB_SERVER_URL
+          echo $GITHUB_RUN_NUMBER
+          echo $CI
       
           
       
