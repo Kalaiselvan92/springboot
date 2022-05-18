@@ -11,15 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Maven build and deploy
+      - name: current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Env variables
         run: |
+          
           echo $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID 
           echo "buildDisplayName": "github.$GITHUB_RUN_NUMBER" 
           echo "buildDuration": "00:00:56"
-          echo "buildStartDate": $NOW
+          echo "buildStartDate": ${{ steps.date.outputs.date }}
           echo "buildStatus": true
           echo "projectId": 59
-          echo $date
+          env
 
           
       
