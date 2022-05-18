@@ -11,10 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set start timestamp
-        id: start
-        run: |
-          echo "::set-output name=timestamp::$(date +%S)"
       - name: current date
         id: date
         run: |
@@ -22,22 +18,23 @@ jobs:
           sudo ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
           echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
       - name: Env variables
+        env:
+          url: $GITHUB_SERVER_URL
+          repo: $GITHUB_REPOSITORY
+          id: $GITHUB_RUN_ID
+          number: $GITHUB_RUN_NUMBER
+          status: $CI
+          
         run: |
           
-          echo $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID 
-          echo "buildDisplayName": "github.$GITHUB_RUN_NUMBER" 
+          echo $url/$repo/actions/runs/$id 
+          echo "buildDisplayName": "github.$number" 
           echo "buildDuration": "00:00:56"
           echo "buildStartDate": ${{ steps.date.outputs.date }}
-          echo "buildStatus": $CI
+          echo "buildStatus": $status
           echo "projectId": 59
           #curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/timing
-      - name: Calculate duration
-        run: |
-          echo "::set-output name=timesend::$(date +%S)"
-          duration=$((timesend - ${{ steps.start.outputs.timestamp }}))
-          echo ${{env.duration}}
-          # Do something with duration, set as output to then use in Slack message
-          # or similar
+      
           
       
      
