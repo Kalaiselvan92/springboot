@@ -18,10 +18,13 @@ jobs:
           sudo ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
           echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
       - name: Env variables
-       
+        env: 
+          URL: "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          RUN: "$GITHUB_RUN_NUMBER"
+          CI: "$CI"
         run: |          
-          echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" 
-          echo "buildDisplayName": "github.$GITHUB_RUN_NUMBER" 
+          echo "$URL" 
+          echo "buildDisplayName": "github.$RUN" 
           echo "buildDuration": "00:00:56"
           echo "buildStartDate": ${{ steps.date.outputs.date }}
           echo "buildStatus": "$CI"
