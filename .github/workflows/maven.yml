@@ -18,20 +18,14 @@ jobs:
           sudo ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
           echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
       - name: Env variables
-        env:
-          url: ${{ GITHUB_SERVER_URL }}
-          repo: ${{ GITHUB_REPOSITORY }}
-          id: ${{ GITHUB_RUN_ID }}
-          number: ${{ GITHUB_RUN_NUMBER }}
-          status: ${{ CI }}
-          
+       
         run: |
           
-          echo $url/$repo/actions/runs/$id 
-          echo "buildDisplayName": "github.$number" 
+          echo "${GITHUB_SERVER_URL}/${ GITHUB_REPOSITORY }/actions/runs/${ GITHUB_RUN_ID }" 
+          echo "buildDisplayName": "github.${ GITHUB_RUN_NUMBER }" 
           echo "buildDuration": "00:00:56"
           echo "buildStartDate": ${{ steps.date.outputs.date }}
-          echo "buildStatus": $status
+          echo "buildStatus": "${ CI }"
           echo "projectId": 59
           #curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/timing
       
