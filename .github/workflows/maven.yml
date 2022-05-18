@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set start timestamp
+        id: start
+        run: |
+          printf '::set-output name=timestamp::%(%s)T\n'
       - name: current date
         id: date
         run: |
@@ -26,8 +30,13 @@ jobs:
           echo "buildStartDate": ${{ steps.date.outputs.date }}
           echo "buildStatus": $CI
           echo "projectId": 59
-          curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/timing
-
+          #curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/timing
+      - name: Calculate duration
+        run: |
+          printf -v now '%(%s)T'
+          duration=$((now - ${{ steps.start.outputs.timestamp }}))
+          # Do something with duration, set as output to then use in Slack message
+          # or similar
           
       
      
