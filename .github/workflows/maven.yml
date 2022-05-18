@@ -17,16 +17,16 @@ jobs:
           sudo unlink /etc/localtime
           sudo ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
           echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
-      - name: Env variables
-        run: |
-          echo "url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_ENV
+      #- name: Env variables
+       # run: |
+         # echo "url=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_ENV
         
-          echo "run=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
-          echo "ci=$CI" >> $GITHUB_ENV
+         # echo "run=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          #echo "ci=$CI" >> $GITHUB_ENV
       - name: print
         run: |          
-          echo "${{ env.URL }}"
-          echo "${{ env.RUN }}"
+          echo "${{ env.GITHUB_SERVER_URL }}"
+          echo "${{ env.GITHUB_RUN_NUMBER }}"
           echo "${{ env.CI }}"
       
           
