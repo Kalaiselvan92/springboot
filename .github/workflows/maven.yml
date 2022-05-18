@@ -23,11 +23,11 @@ jobs:
         
          # echo "run=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
           #echo "ci=$CI" >> $GITHUB_ENV
-      - name: current date
+      - name: variable
         id: env
         run: |
           
-          echo "::set-output name=env::$GITHUB_SERVER_URL"
+          echo "::set-output name=env::$(GITHUB_SERVER_URL)"
           
       - name: print
         run: |
