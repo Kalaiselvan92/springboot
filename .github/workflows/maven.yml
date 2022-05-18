@@ -12,7 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Maven build and deploy
-        run: 
-          echo ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}      
+        run: |
+          echo $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID 
+          echo "buildDisplayName": "github.$GITHUB_RUN_NUMBER" 
+          echo "buildDuration": "00:00:56"
+          echo "buildStartDate": $NOW
+          echo "buildStatus": true
+          echo "projectId": 59
+          echo $NOW
+
+          
       
      
