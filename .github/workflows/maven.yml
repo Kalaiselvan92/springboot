@@ -37,6 +37,9 @@ jobs:
           ${{ steps.env.outputs.env }}
           ${{ steps.env.outputs.num }}
           ${{ steps.env.outputs.ci }}
-          
+      - name: curl
+        uses: wei/curl@v1
+        with:
+          args: -X GET https://api.github.com/repos/$GITHUB_REPOSITORY/actions/jobs/$GITHUB_RUN_ID
       
    
