@@ -31,12 +31,12 @@ jobs:
           echo "::set-output name=num::$GITHUB_RUN_NUMBER"
           echo "::set-output name=ci::$CI"
           
-      - name: print
-        run: |
-          ${{ steps.date.outputs.date }}
-          ${{ steps.env.outputs.env }}
-          ${{ steps.env.outputs.num }}
-          ${{ steps.env.outputs.ci }}
+     # - name: print
+      #  run: |
+       #   ${{ steps.date.outputs.date }}
+        #  ${{ steps.env.outputs.env }}
+         # ${{ steps.env.outputs.num }}
+          #${{ steps.env.outputs.ci }}
       - name: curl
         uses: wei/curl@v1
         with:
