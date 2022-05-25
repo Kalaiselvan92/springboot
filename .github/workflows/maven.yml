@@ -51,4 +51,4 @@ jobs:
           
       - name: dry run
         run: |
-            echo steps.jobstatus.outputs.status
+            echo ${{ steps.jobstatus.outputs.status }}
