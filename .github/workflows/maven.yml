@@ -45,5 +45,10 @@ jobs:
       - name: Result
         run:
           echo "${{ steps.deploy.outputs.op }}"
-      
+      - name: deployment job variable
+        if: always()        
+        env:
+            DEPLOYMENT_STATUS: "${{ steps.deploy.outputs.op }}"
+        run:
+            echo $DEPLOYMENT_STATUS
    
