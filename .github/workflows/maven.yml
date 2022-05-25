@@ -50,5 +50,6 @@ jobs:
         env:
             DEPLOYMENT_STATUS: "${{ steps.deploy.outputs.op }}"
         run:
-            $DEPLOYMENT_STATUS
-   
+            echo $DEPLOYMENT_STATUS
+            echo "SLACK_MESSAGE  HTTP-$DEPLOYMENT_STATUS" 
+          
