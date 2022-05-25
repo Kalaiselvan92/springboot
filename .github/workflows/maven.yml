@@ -37,9 +37,13 @@ jobs:
         #  ${{ steps.env.outputs.env }}
          # ${{ steps.env.outputs.num }}
           #${{ steps.env.outputs.ci }}
-      - name: curl
-        uses: wei/curl@v1
-        with:
-          args: -X GET https://api.github.com/repos/$GITHUB_REPOSITORY/actions/jobs/$GITHUB_RUN_ID
+      - name: Run one-line script
+        id: deploy
+        run: 
+           echo "::set-output name=op::$(wget -O /dev/null http://localhost:8080/employee 2>&1 | egrep -o "200|failed")"
+           
+      - name: Result
+        run:
+          echo "${{ steps.deploy.outputs.op }}"
       
    
