@@ -36,24 +36,19 @@ jobs:
        #   ${{ steps.date.outputs.date }}
         #  ${{ steps.env.outputs.env }}
          # ${{ steps.env.outputs.num }}
-          #${{ steps.env.outputs.ci }}
+          #${{ steps.env.outputs.ci }}       
       
-      - name: set java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-        
-      - name: Download tomcat
-        run: |
-            sudo su
-            cd /opt/
-            wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
-            tar -xvf apache-tomcat-9.0.63.tar.gz
-            ls -lrt && pwd
-           
-            cd /opt/apache-tomcat-9.0.63/webapps && wget -N https://tomcat.apache.org/tomcat-5.5-doc/appdev/sample/sample.war
-            /opt/apache-tomcat-9.0.63/bin/startup.sh
-            
       - name: Run one-line script
+        id: status
         run: 
-           wget -O /dev/null http://localhost:8080/sample 2>&1 | grep -F HTTP
+           echo "::set-output name=op::$(wget -O /dev/null http://localhost:8080/employee 2>&1 | grep -o "200")"
+           
+      - name: run notify
+        id: check
+        if: steps.status.outputs.op != 'true'
+        run: |
+          echo "::set-output name=status::${{ job.status == 'failure'}}"
+          
+      - name: dry run
+        run: |
+            echo steps.jobstatus.outputs.status
