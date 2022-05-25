@@ -50,5 +50,5 @@ jobs:
         env:
             DEPLOYMENT_STATUS: "${{ steps.deploy.outputs.op }}"
         run:
-            echo $DEPLOYMENT_STATUS
+            $DEPLOYMENT_STATUS
    
