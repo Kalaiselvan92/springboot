@@ -57,5 +57,16 @@ jobs:
            
             cd /opt/apache-tomcat-9.0.63/webapps && wget -N https://raw.githubusercontent.com/aeimer/java-example-helloworld-war/master/dist/helloworld.war
             /opt/apache-tomcat-9.0.63/bin/startup.sh
-            
+            wget -O /dev/null http://localhost:8080/helloworld 2>&1 | egrep -o "200|failed"  
+      - name: call API
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'http://ip.jsontest.com/'
+          method: 'POST'
+          contentType: application/json
+          data: '{ "property": ["Sites"], "report_type" : ["ALL"] }'                  
+                         
+      - name: Show Response
+        run: echo ${{ steps.myRequest.outputs.response }}
           
