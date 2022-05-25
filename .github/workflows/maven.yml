@@ -56,4 +56,4 @@ jobs:
             
       - name: Run one-line script
         run: 
-           wget -O /dev/null http://localhost:8080/sample 2>&1 | egrep -o "200|failed"
+           wget -O /dev/null http://localhost:8080/sample 2>&1 | grep -F HTTP
