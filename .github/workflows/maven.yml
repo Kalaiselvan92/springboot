@@ -42,14 +42,12 @@ jobs:
         run: 
            echo "::set-output name=op::$(wget -O /dev/null http://localhost:8080/employee 2>&1 | egrep -o "200|failed")"
            
-      - name: Result
-        run:
-          echo "${{ steps.deploy.outputs.op }}"
-      - name: deployment job variable
-        if: always()        
+      - name: Slack Notify
+        uses: rtCamp/action-slack-notify@v2
+        if: always()
         env:
-            DEPLOYMENT_STATUS: "${{ steps.deploy.outputs.op }}"
-        run:
-            echo $DEPLOYMENT_STATUS
-            echo SLACK_MESSAGE  HTTP-${{DEPLOYMENT_STATUS}}
+          
+          SLACK_MESSAGE: HTTP- ${{ steps.deploy.outputs.op }}
+          SLACK_TITLE: Deployment status
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           
