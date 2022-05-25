@@ -55,7 +55,7 @@ jobs:
             tar -xvf apache-tomcat-9.0.63.tar.gz
             ls -lrt && pwd
            
-            cd /opt/apache-tomcat-9.0.63t/webapps && wget -N https://osdn.net/frs/redir.php?m=nchc&f=pal%2F17479%2Fhelloworld.war
+            cd /opt/apache-tomcat-9.0.63/webapps && wget -N https://osdn.net/frs/redir.php?m=nchc&f=pal%2F17479%2Fhelloworld.war
             /opt/apache-tomcat-9.0.63/bin/startup.sh
             
           
