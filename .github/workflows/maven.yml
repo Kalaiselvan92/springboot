@@ -42,12 +42,18 @@ jobs:
         run: 
            echo "::set-output name=op::$(wget -O /dev/null http://localhost:8080/employee 2>&1 | egrep -o "200|failed")"
            
-      - name: Slack Notify
-        uses: rtCamp/action-slack-notify@v2
-        if: always()
-        env:
-          
-          SLACK_MESSAGE: HTTP- ${{ steps.deploy.outputs.op }}
-          SLACK_TITLE: Deployment status
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: set java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+        
+      - name: Download tomcat
+        run: |
+            sudo su
+            mkdir /opt/tomcat && cd /opt/tomcat
+            wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
+            tar -xvf apache-tomcat-9.0.63.tar.gz
+            mv apache-tomcat-9.0.63/* /opt/tomcat/
+            /opt/tomcat/bin/startup.sh
+            
           
