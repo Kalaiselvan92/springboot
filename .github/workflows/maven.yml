@@ -37,11 +37,7 @@ jobs:
         #  ${{ steps.env.outputs.env }}
          # ${{ steps.env.outputs.num }}
           #${{ steps.env.outputs.ci }}
-      - name: Run one-line script
-        id: deploy
-        run: 
-           echo "::set-output name=op::$(wget -O /dev/null http://localhost:8080/employee 2>&1 | egrep -o "200|failed")"
-           
+      
       - name: set java
         uses: actions/setup-java@v1
         with:
@@ -55,9 +51,9 @@ jobs:
             tar -xvf apache-tomcat-9.0.63.tar.gz
             ls -lrt && pwd
            
-            cd /opt/apache-tomcat-9.0.63/webapps && wget -N https://raw.githubusercontent.com/aeimer/java-example-helloworld-war/master/dist/helloworld.war
+            cd /opt/apache-tomcat-9.0.63/webapps && wget -N https://tomcat.apache.org/tomcat-5.5-doc/appdev/sample/sample.war
             /opt/apache-tomcat-9.0.63/bin/startup.sh
-            wget -O /dev/null http://localhost:8080/helloworld 2>&1 | egrep -o "200|failed"  
+            wget -O /dev/null http://localhost:8080/sample 2>&1 | egrep -o "200|failed"  
       - name: call API
         id: myRequest
         uses: fjogeleit/http-request-action@v1
