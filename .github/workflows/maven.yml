@@ -47,7 +47,7 @@ jobs:
         id: check
         if: steps.status.outputs.op != 'true'
         run: |
-          echo "::set-output name=status::${{ job.status == 'failure'}}"
+          echo "::set-output name=status::${{ job.status == 'success'}}"
           
       - name: dry run
         run: |
