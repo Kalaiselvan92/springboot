@@ -51,5 +51,5 @@ jobs:
             DEPLOYMENT_STATUS: "${{ steps.deploy.outputs.op }}"
         run:
             echo $DEPLOYMENT_STATUS
-            echo "SLACK_MESSAGE  HTTP-$DEPLOYMENT_STATUS" 
+            echo SLACK_MESSAGE  HTTP-${{DEPLOYMENT_STATUS}}
           
