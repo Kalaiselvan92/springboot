@@ -44,7 +44,7 @@ jobs:
            echo "::set-output name=op::$(wget -O /dev/null https://www.google.com/ 2>&1 | grep -o "200")"
            
       - name: deployment job variable 1
-        if: ${{ steps.deploy.outputs.op }} == 200
+        if: ${{ steps.status.outputs.op }} == 200
         id: jobstatus
         run: |
           
@@ -54,7 +54,7 @@ jobs:
         run: |
             echo ${{ steps.jobstatus.outputs.status }}
       - name: deployment job variable 2
-        if: ${{ steps.deploy.outputs.op }} != 200
+        if: ${{ steps.status.outputs.op }} != 200
         id: successstatus
         run: |
           
