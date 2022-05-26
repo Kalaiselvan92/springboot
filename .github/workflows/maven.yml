@@ -51,6 +51,7 @@ jobs:
           echo "::set-output name=status::${{ job.status == 'success'}}" 
           
       - name: dry run 1
+        if: always ()
         run: |
             echo ${{ steps.jobstatus.outputs.status }}
       
