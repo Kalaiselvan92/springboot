@@ -44,7 +44,7 @@ jobs:
            echo "::set-output name=op::$(wget -O /dev/null https://www.google.com/ 2>&1 | grep -o "200")"
            
       - name: deployment job variable 1
-        if: ${{ steps.status.outputs.op }} == 200
+        if: always()
         id: jobstatus
         run: |
           
@@ -53,13 +53,4 @@ jobs:
       - name: dry run 1
         run: |
             echo ${{ steps.jobstatus.outputs.status }}
-      - name: deployment job variable 2
-        if: ${{ steps.status.outputs.op }} != 200
-        id: successstatus
-        run: |
-          
-          echo "::set-output name=status::${{ job.status == 'failure'}}" 
-          
-      - name: dry run 2
-        run: |
-            echo ${{ steps.successstatus.outputs.status }}
+      
