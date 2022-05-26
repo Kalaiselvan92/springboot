@@ -41,7 +41,7 @@ jobs:
       - name: Run one-line script
         id: status
         run: 
-           echo "::set-output name=op::$(wget -O /dev/null https://www.gogle.com/ 2>&1 | grep -o "200")"
+           ::set-output name=op::$(wget -O /dev/null https://www.gogle.com/ 2>&1 | grep -o "200")
            
       - name: deployment job variable 1
         if: always()
