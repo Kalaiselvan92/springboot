@@ -41,15 +41,25 @@ jobs:
       - name: Run one-line script
         id: status
         run: 
-           echo "::set-output name=op::$(wget -O /dev/null http://localhost:8080/employee 2>&1 | grep -o "200")"
+           echo "::set-output name=op::$(wget -O /dev/null https://www.google.com/ 2>&1 | grep -o "200")"
            
-      - name: deployment job variable
-        if: ${{ steps.deploy.outputs.op }} != 200
+      - name: deployment job variable 1
+        if: ${{ steps.deploy.outputs.op }} == 200
         id: jobstatus
+        run: |
+          
+          echo "::set-output name=status::${{ job.status == 'success'}}" 
+          
+      - name: dry run 1
+        run: |
+            echo ${{ steps.jobstatus.outputs.status }}
+      - name: deployment job variable 2
+        if: ${{ steps.deploy.outputs.op }} != 200
+        id: successstatus
         run: |
           
           echo "::set-output name=status::${{ job.status == 'failure'}}" 
           
-      - name: dry run
+      - name: dry run 2
         run: |
-            echo ${{ steps.jobstatus.outputs.status }}
+            echo ${{ steps.successstatus.outputs.status }}
