@@ -24,18 +24,14 @@ jobs:
      
       - name: Download tomcat
         run: |
-          sudo su;
-          cd /opt; wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
-          tar -xvf /opt/apache-tomcat-9.0.63.tar.gz
-          cd /opt/apache-tomcat-9.0.63/webapps && wget https://tomcat.apache.org/tomcat-8.5-doc/appdev/sample/sample.war
-          chmod +x /opt/apache-tomcat-9.0.63/bin/startup.sh
-          sh /opt/apache-tomcat-9.0.63/bin/startup.sh
-          ls -lrt /opt/apache-tomcat-9.0.63/webapps
-         
+          cd /home/runner
+          wget https://tomcat.apache.org/tomcat-8.5-doc/appdev/sample/sample.war
+          wget http://tomcat:Password@192.168.1.9:8080/manager/text/deploy?path=/sample&war=file:/home/runner/sample.war -O - -q
+          ls -lrt 
       - name: Run one-line script
         id: status
         run: 
-           wget -O /dev/null http://localhost:8080/sample 2>&1 | grep -o "200"
+           wget -O /dev/null http://192.168.1.9:8080/sample 2>&1 | grep -o "200"
            
       - name: deployment job variable 1
         if: always()
