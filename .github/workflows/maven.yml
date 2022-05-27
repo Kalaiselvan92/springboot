@@ -28,7 +28,8 @@ jobs:
           cd /opt; wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
           tar -xvf /opt/apache-tomcat-9.0.63.tar.gz
           cd /opt/apache-tomcat-9.0.63/webapps && wget https://tomcat.apache.org/tomcat-8.5-doc/appdev/sample/sample.war
-          sh +x /opt/apache-tomcat-9.0.63/bin/startup.sh
+          chmod +x /opt/apache-tomcat-9.0.63/bin/startup.sh
+          sh /opt/apache-tomcat-9.0.63/bin/startup.sh
           ls -lrt /opt/apache-tomcat-9.0.63/webapps
          
       - name: Run one-line script
