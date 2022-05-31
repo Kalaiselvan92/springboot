@@ -20,7 +20,7 @@ jobs:
       - name: print variable
         run: |
           echo ${{ github.event.workflow_run.run_number }}
-          echo ${{ github.event.workflow_run.total_duration }}
+          echo ${{ github.event.workflow_run.duration }}
        
       
      
