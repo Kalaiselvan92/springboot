@@ -31,7 +31,7 @@ jobs:
       - name: Run one-line script
         id: status
         run: 
-           wget -O /dev/null http://192.168.1.9:8080/jenkins/ 2>&1 | grep -o "200"
+           wget -O /dev/null https://www.google.com 2>&1 | grep -o "200"
            
       - name: deployment job variable 1
         if: always()
