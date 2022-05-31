@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-     - name: print variable
-       run: |
+      - name: print variable
+        run: |
           echo ${{ github.event.workflow_run.run_number }}
           echo ${{ github.event.workflow_run.total_duration }}
        
